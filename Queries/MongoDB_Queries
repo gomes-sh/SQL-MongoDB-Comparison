@@ -1,0 +1,55 @@
+db.Songs.aggregate([
+   {
+      $group: {
+         _id: null,
+         averageLength: { $avg: "$duration_ms"}
+      }
+   }
+]).explain("executionStats")
+
+
+db.Songs.aggregate([
+   {
+      $group: {
+         _id: null,
+         minimumLength: { $min: "$duration_ms"}
+      }
+   }
+]).explain("executionStats")
+
+db.Songs.aggregate([
+   {
+      $group: {
+         _id: null,
+         maximumLength: { $max: "$duration_ms"}
+      }
+   }
+]).explain("executionStats")
+
+
+db.Songs.aggregate([
+   {
+      $group: {
+         _id: null,
+         totalLength: { $sum: "$duration_ms"}
+      }
+   }
+]).explain("executionStats")
+
+
+db.Songs.aggregate([
+   {$group: {_id: "$artists", totalSongs: {$sum: 1}}},
+   {$sort: {totalSongs: -1}},
+   {$limit: 1}
+]).explain("executionStats")
+
+
+db.Songs.aggregate([
+   {$group: {_id: "$track_genre", totalSongs: {$sum: 1}}}
+]).explain("executionStats")
+
+
+db.Songs.aggregate([
+   {$match: { duration_ms: {$lt: 200000}}}, 
+   {$group: {_id: null, songCount: {$sum: 1}}}
+]).explain("executionStats")
