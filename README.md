@@ -15,6 +15,6 @@ All data comes from <a href="https://www.kaggle.com/datasets/maharshipandya/-spo
 
 **MongoDB_Queries** is a .txt file containing the queries used for MongoDB.
 
-**SQL_Queries** (NOT YET CREATED) is a file containing the queries used for SQL.
+**SQLQueries** is a file containing the queries used for SQL. 
 
-**ExecutionTimeResults.R** contains the data of the 20 runs for all functions across SQL and MongoDB. It calculates the averages and plots them. (NOTE: This file is not complete.)
+**ExecutionTimeResults.R** contains the data of the 20 runs for all functions across SQL and MongoDB. It calculates the averages and plots them.
