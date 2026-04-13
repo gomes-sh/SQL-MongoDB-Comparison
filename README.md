@@ -1,4 +1,4 @@
-# MySQL-MongoDB-Comparison
+# MySQL MongoDB Comparison
 
 This repository contains the code for a comparison of execution speed between MongoDB and SQL in regards to running aggregate functions. This is a project for a senior research class at my university.
 
