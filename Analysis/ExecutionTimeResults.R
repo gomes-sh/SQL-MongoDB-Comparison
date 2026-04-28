@@ -27,7 +27,6 @@ means <- data.frame(
   names = c("MongoAverage", "MongoMinimum", "MongoMaximum", "MongoSum", "MongoCountUnder", "MongoCountPer", "MongoSearchMost", "SQLAverage", "SQLMinimum", "SQLMaximum", "SQLSum", "SQLCountUnder", "SQLCountPer", "SQLSearchMost"),
   msTimes = c(mean(executionTimes$M.avg), mean(executionTimes$M.min), mean(executionTimes$M.max), mean(executionTimes$M.sum), mean(executionTimes$M.countUnder), mean(executionTimes$M.countPer), mean(executionTimes$M.searchMost), mean(executionTimes$S.avg), mean(executionTimes$S.min), mean(executionTimes$S.max), mean(executionTimes$S.sum), mean(executionTimes$S.countUnder), mean(executionTimes$S.countPer), mean(executionTimes$S.searchMost)))
 
-
 countUnder <- data.frame(
   names = c("MongoDB", "SQL"),
   msTimes = c(mean(executionTimes$M.countUnder), mean(executionTimes$S.countUnder))
@@ -57,3 +56,17 @@ increases <- data.frame(
 
 increases.t <- ggbarplot(increases, x = "Command", y = "PercentIncrease", fill = "Slower", label = TRUE, lab.col = "white", lab.pos = "in", ylab = "Percent Increase", xlab = "Aggregate Queries")
 
+# t-tests below
+avgT <- t.test(executionTimes$M.avg, executionTimes$S.avg)
+minT <- t.test(executionTimes$M.min, executionTimes$S.min)
+maxT <- t.test(executionTimes$M.max, executionTimes$S.max)
+sumT <- t.test(executionTimes$M.sum, executionTimes$S.sum)
+countUnderT <- t.test(executionTimes$M.countUnder, executionTimes$S.countUnder)
+countPerT <- t.test(executionTimes$M.countPer, executionTimes$S.countPer)
+searchMostT <- t.test(executionTimes$M.searchMost, executionTimes$S.searchMost)
+
+tTests <- data.frame(
+  Command = c("Songs Per Genre", "Sum", "Under 200,000 ms", "Max", "Min", "Average", "Artist with Most Songs"),
+  pvalue = c(.0000000001742, .0000000001028, .0000003425, .002541, .0000002946, .03722, .00000000000000022)
+)
+table(tTests)
